@@ -1,0 +1,8 @@
+∗ What data structure you chose and why
+  연결리스트를 이용한 그래프를 이용했다. strongly connected components를 구하기 가장 무난 할 것이라고 생각했기 때문.
+  
+∗ What is your expected performance
+  원래는 id number를 받으면 유저 정보와 함께 그래프에 저장시키려고 했는데 내 능력의 한계로 따로 저장을 해야되서 생각보다 기능 수행을 잘 못했던 것 같다.
+
+∗ How would you improve the system in the future 
+  일단 프로그램을 마무리를 짓고 지저분한 코드를 없애야할 것 같다. search할 때 sort를 이용하면 시간이 조금 더 단축될 것 같다.
