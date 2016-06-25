@@ -156,6 +156,8 @@ typedef struct word_tweet {
     User tweet_user;
     char tweet_date[6][9];
     char tweet_word[20];
+    char us_name[21];
+    int us_id;
 }Word;
 
 int main()
@@ -227,9 +229,11 @@ int main()
         fscanf(word_f,"%s",tww[tw_num].tweet_word);
         tw_num++;
         int sc = 0;
+        tww[tw_num].us_id = tmp3;
         while(1) {
             if(twu[sc].id_num == tmp3) {
                 twu[sc].numT++;
+                strcpy(tww[tw_num].us_name, twu[sc].sc_name);
                 break;
             }
             else
@@ -239,6 +243,8 @@ int main()
     }
 
     fclose(word_f);
+
+    char wordsc[20];
 
     int menu;
     while(1) {
@@ -385,19 +391,19 @@ int main()
             }
 
             for(i = 1; i < user_num - 1; i++) {
-                if(twu[top2].numT < twu[i].numT && top2 != top1) top2 = i;
+                if(twu[top2].numT < twu[i].numT && i != top1) top2 = i;
             }
 
             for(i = 1; i < user_num - 1; i++) {
-                if(twu[top3].numT < twu[i].numT && top3 != top1 && top3 != top2) top3 = i;
+                if(twu[top3].numT < twu[i].numT && i != top1 && i != top2) top3 = i;
             }
 
             for(i = 1; i < user_num - 1; i++) {
-                if(twu[top4].numT < twu[i].numT && top4 != top1 && top4 != top2 && top4 != top3) top4 = i;
+                if(twu[top4].numT < twu[i].numT && i != top1 && i != top2 && i != top3) top4 = i;
             }
 
             for(i = 1; i < user_num - 1; i++) {
-                if(twu[top5].numT < twu[i].numT && top5 != top1 && top5 != top2 && top5 != top3 && top5 != top4) top5 = i;
+                if(twu[top5].numT < twu[i].numT && i != top1 && i != top2 && i != top3 && i != top4) top5 = i;
             }
 
             printf("------------------------------\n3. Top 5 most tweeted users\n");
@@ -409,9 +415,43 @@ int main()
             printf("------------------------------\n");
         }
         else if(menu == 4) {
+            int i;
+            //char wordsc[20];
 
+            printf("------------------------------\n4. Find users who tweeted a word (e.g., ’연세대’)\n");
+            printf("Word: ");
+            scanf("%s",wordsc);
+
+            for(i = 0; i < tw_num; i++) {
+                if(!strcmp(wordsc, tww[i].tweet_word)) printf("User Screen Name: %s\n",tww[i].us_name);
+            }
+            printf("Search End\n------------------------------\n");
         }
         else if(menu == 5) {
+            int i;
+            printf("------------------------------\n5. Find all people who are friends of the above users\n");
+            ALGraph pg = graph;
+           /* for(i = 0; i < tw_num; i++) {
+                if(!strcmp(wordsc, tww[i].tweet_word)) {
+                int j;
+                    for(j = 0; j < user_num; j++) {
+                        if(tww[i].us_id == twu[j].id_num) {
+
+                            int vx = 0;
+                            printf("%s's Friends:\n",twu[j].sc_name);
+
+                            if(LFirst(&(pg->adjList[j]), &vx)) {
+                                printf("%s\n", twu[vx].sc_name);
+
+                                while(LNext(&(pg->adjList[j]), &vx))
+                                    printf("%s\n", twu[vx].sc_name);
+                            }
+                            printf("\n");
+                        }
+                    }
+                }
+            }*/
+
 
         }
         else if(menu == 6) {
