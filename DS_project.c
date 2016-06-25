@@ -176,13 +176,6 @@ int main()
 	}
 
 	fclose(user_f);
-/*
-    int j;
-    for(j = 0; j < user_num-1; j++) {
-        printf("%d번째 ID NUM: %d\n",j+1,twu[j].id_num);
-        printf("%d번째 가입 날짜: %s %s %s %s %s %s\n",j+1,twu[j].date[0],twu[j].date[1],twu[j].date[2],twu[j].date[3],twu[j].date[4],twu[j].date[5]);
-        printf("%d번째 닉네임: %s\n",j+1,twu[j].sc_name);
-    }*/
 
     ALGraph graph;
     GraphInit(&graph, user_num - 1);
@@ -212,9 +205,6 @@ int main()
         AddEdge(&graph, sc1, sc2);
         fr_num++;
     }
-
-    //ShowGraphEdgeInfo(&graph);
-    //GraphDestroy(&graph);
 
     fclose(friend_f);
 
@@ -265,62 +255,6 @@ int main()
 
         if(menu == 0) {
             printf("------------------------------\n0. Read data files\n");
-/*
-            User twu[1000];
-            int user_num = 0;
-            FILE *user_f;
-            user_f = fopen("user.txt","rt");
-
-            while(!feof(user_f)) {
-                fscanf(user_f,"%d",&twu[user_num].id_num);
-                fscanf(user_f,"%s %s %s %s %s %s",twu[user_num].date[0],twu[user_num].date[1],twu[user_num].date[2],twu[user_num].date[3],twu[user_num].date[4],twu[user_num].date[5]);
-                fscanf(user_f,"%s",twu[user_num].sc_name);
-                user_num++;
-            }
-
-            fclose(user_f);
-
-            ALGraph graph;
-            GraphInit(&graph, user_num - 1);
-
-            FILE *friend_f;
-            friend_f = fopen("friend.txt","rt");
-            int tmp1,tmp2,fr_num=0;
-
-            while(!feof(friend_f)) {
-                int sc1 = 0, sc2 = 0;
-                fscanf(friend_f,"%d\n%d",&tmp1,&tmp2);
-                while(1) {
-                    if(twu[sc1].id_num == tmp1) break;
-                    else sc1++;
-                }
-
-                while(1) {
-                    if(twu[sc2].id_num == tmp2) break;
-                    else sc2++;
-                }
-                twu[sc1].numF++;
-                twu[sc2].numF++;
-                AddEdge(&graph, sc1, sc2);
-                fr_num++;
-            }
-
-            fclose(friend_f);
-
-            Word tww[10000];
-            int tw_num = 0;
-            FILE *word_f;
-            word_f = fopen("word.txt","rt");
-
-            while(!feof(word_f)) {
-                fscanf(word_f,"%d",&tww[tw_num].tweet_user.id_num);
-                fscanf(word_f,"%s %s %s %s %s %s",tww[tw_num].tweet_date[0],tww[tw_num].tweet_date[1],tww[tw_num].tweet_date[2],tww[tw_num].tweet_date[3],tww[tw_num].tweet_date[4],tww[tw_num].tweet_date[5]);
-                fscanf(word_f,"%s",tww[tw_num].tweet_word);
-                tw_num++;
-            }
-
-            fclose(word_f);*/
-
             printf("Total users: %d\n",user_num - 1);
             printf("Total friendship records: %d\n", fr_num);
             printf("Total tweet: %d\n------------------------------\n", tw_num);
